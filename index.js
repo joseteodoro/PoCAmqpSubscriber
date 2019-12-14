@@ -38,6 +38,9 @@ app.get('/:queue/', function (req, res) {
                     res.status(200).send('empty')
                 })
             })
+            .then(() => {
+                return ch.close()
+            })
     })
     .catch(err => {
         res.status(500).send(`Error pushing to ${queue}. ${err}`)
